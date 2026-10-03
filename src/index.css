@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Lobster+Two:ital,wght@1,700&family=Nunito+Sans:wght@400;600;700&family=Poppins:wght@600;700&family=Yellowtail&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #FFFFFF; color: #0A0A0A; font-family: 'Nunito Sans', system-ui, sans-serif; overflow-x: hidden; }
+section[id] { scroll-margin-top: 80px; }
+:focus-visible { outline: 2px solid #E31B23; outline-offset: 3px; }
+
+.font-condensed { font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; }
+.font-hand { font-family: 'Yellowtail', cursive; }
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-site px-5 sm:px-8; }
+  .btn { @apply inline-flex w-full items-center justify-center rounded-full border border-transparent px-7 py-3 text-sm font-bold no-underline transition-all duration-200 sm:w-auto; }
+  .btn-red { @apply bg-sign text-white hover:bg-door; }
+  .btn-white { @apply bg-white text-night hover:bg-sign hover:text-white; }
+  .btn-outline { @apply border-night text-night hover:bg-night hover:text-white; }
+}
+
+/* Plate turns one way, the text ring turns the other way */
+@keyframes spin-forward {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes spin-backward {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+.spin-slow { animation: spin-forward 25s linear infinite; }
+.spin-reverse { animation: spin-backward 18s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation: none !important; transition: none !important; }
+}
+
+/* Small dishes circle the plate; each one turns back so it stays upright */
+.orbit { animation: spin-forward 40s linear infinite; }
+.orbit-counter { animation: spin-backward 40s linear infinite; }
